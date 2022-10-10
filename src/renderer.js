@@ -14,20 +14,10 @@ myClipboard.getHistory().then(history => {
     setInterval(() => {
         myClipboard.readText().then(res => {
             res = res.trim()
-            if (!res) {
+            if (!res || res === lastOne || res === saved) {
                 return
             }
-            if (res === lastOne || res === saved) {
-                return
-            }
-            if (texts.length == 0) {
-                texts.push(res)
-                appendText(res)
-                lastOne = res
-                myClipboard.saveHistory(texts)
-                return
-            }
-            if (res != texts[texts.length - 1]) {
+            if (texts.length == 0 || res != texts[texts.length - 1]) {
                 texts.push(res)
                 appendText(res)
                 lastOne = res
