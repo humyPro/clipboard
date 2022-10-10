@@ -1,14 +1,15 @@
 const { app, BrowserWindow, Menu, globalShortcut } = require('electron');
-
+if (require('electron-squirrel-startup')) {
+  return app.quit();
+}
 const path = require('path');
-const { initHandler } = require('./src/handler');
+const { initHandler } = require('./handler');
 const width = 300
 const height = 600
 const createWindow = () => {
   const win = new BrowserWindow({
     width: width,
     height: height,
-    icon: "./paimeng.ico",
     maxWidth: width,
     maxHeight: height,
     fullscreen: false,
@@ -16,7 +17,7 @@ const createWindow = () => {
       preload: path.join(__dirname, './preload.js'),
     },
   });
-  win.loadFile('index.html');
+  win.loadFile(path.join(__dirname, 'index.html'));
 };
 // 取消头部菜单栏
 Menu.setApplicationMenu(null)
