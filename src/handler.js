@@ -34,6 +34,7 @@ const rightClick = (e, id) => {
 }
 const leftClick = (e, text) => {
     clipboard.writeText(text)
+    BrowserWindow.getFocusedWindow().minimize()
 }
 const saveHistory = (e, texts) => {
     if (!texts || texts.length === 0) {
