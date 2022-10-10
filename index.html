@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <!-- <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    /> -->
+  <meta htto-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'">
+  <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+  <title>剪切板</title>
+  <style>
+    body {
+      background-color: #e6e7e8;
+    }
+
+    #content .item {
+      background-color: #fff;
+      height: 50px;
+      margin-bottom: 10px;
+      padding: 2px 3px;
+      font-size: small;
+      overflow: hidden;
+      border: solid 2px #fff;
+    }
+
+    #content .item:hover {
+      border: solid 2px rgb(149, 168, 204);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="content">
+  </div>
+</body>
+<script src="./renderer.js"></script>
+
+</html>
