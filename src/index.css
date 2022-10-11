@@ -1,0 +1,42 @@
+body {
+    background-color: #e6e7e8;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#content .item {
+    height: 50px;
+    margin-bottom: 10px;
+    padding: 2px 3px;
+    font-size: small;
+    overflow: hidden;
+    border: solid 2px #fff;
+    white-space: normal;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+#content .item.color {
+    background-color: #fff;
+}
+
+#content .item:hover {
+    border: solid 2px rgb(149, 168, 204);
+}
+
+#option {
+    display: flex;
+    align-content: center;
+    margin: 5px;
+    justify-content: space-around;
+    font-size: smaller;
+}
+
+#option div {
+    border: solid 1px white;
+    padding: 2px;
+    background-color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0px 1px 0px 0px grey;
+}

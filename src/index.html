@@ -10,31 +10,14 @@
   <meta htto-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'">
   <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
   <title>剪切板</title>
-  <style>
-    body {
-      background-color: #e6e7e8;
-    }
-
-    #content .item {
-      background-color: #fff;
-      height: 50px;
-      margin-bottom: 10px;
-      padding: 2px 3px;
-      font-size: small;
-      overflow: hidden;
-      border: solid 2px #fff;
-      white-space: normal;
-      word-wrap: break-word;
-      word-break: break-all;
-    }
-
-    #content .item:hover {
-      border: solid 2px rgb(149, 168, 204);
-    }
-  </style>
+  <link rel="stylesheet" href="./index.css" type="text/css" />
 </head>
 
 <body>
+  <div id="option">
+    <div id="background-image">背景图片</div>
+    <div id="clean-all">全部清除</div>
+  </div>
   <div id="content">
   </div>
 </body>

@@ -8,6 +8,9 @@ contextBridge.exposeInMainWorld('myClipboard', {
     getHistory: () => {
         return ipcRenderer.invoke("getHistory")
     },
+    selectFile: () => {
+        return ipcRenderer.invoke("selectFile")
+    },
     rightClick: (id) => {
         ipcRenderer.send("rightClick", id)
     },

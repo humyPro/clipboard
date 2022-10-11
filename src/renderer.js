@@ -35,7 +35,8 @@ function appendText(text) {
     const item = document.createElement("div")
     item.innerText = text
     item.id = "item_" + (texts.length - 1)
-    item.classList = ["item"]
+    const classList = Array.from(content.children?.[0]?.classList || []).join(" ") || "item color"
+    item.classList = [classList]
     item.title = text
     content.prepend(item)
 }
@@ -43,16 +44,32 @@ function appendText(text) {
 window.onload = () => {
     window.addEventListener("contextmenu", e => {
         e.preventDefault()
-        if (e.target.id && e.target.id.startsWith("item_")) {
-            const id = parseInt(e.target.id.replace("item_", ""))
+        const target = e.target;
+        if (target.id && target.id.startsWith("item_")) {
+            const id = parseInt(target.id.replace("item_", ""))
             myClipboard.rightClick(id)
         }
     })
     window.addEventListener("click", e => {
         e.preventDefault()
-        if (e.target.id && e.target.id.startsWith("item_")) {
-            saved = e.target.title
+        const target = e.target;
+        if (target.id && target.id.startsWith("item_")) {
+            saved = target.title
             myClipboard.leftClick(saved)
+        } else if (target.id && target.id == "clean-all") {
+            this.texts = []
+            const content = document.getElementById("content")
+            content.innerHTML = null
+            myClipboard.saveHistory([])
+        } else if (target.id && target.id == "background-image") {
+            myClipboard.selectFile().then(file => {
+                console.log("选取文件成功")
+                document.body.style.backgroundImage = `URL(${URL.createObjectURL(new Blob([file]))})`
+                document.body.style.backgroundColor = null
+                Array.from(document.getElementsByClassName("item")).forEach(e => {
+                    e.classList.remove("color")
+                })
+            })
         }
     })
 }

@@ -1,4 +1,4 @@
-const { clipboard, ipcMain, Menu, BrowserWindow, app } = require('electron');
+const { clipboard, ipcMain, Menu, BrowserWindow, app, dialog } = require('electron');
 const { HandlerName } = require('./constant/handlerName');
 const fs = require("fs")
 const path = require('path');
@@ -36,10 +36,7 @@ const leftClick = (e, text) => {
     clipboard.writeText(text)
     BrowserWindow.getFocusedWindow().minimize()
 }
-const saveHistory = (e, texts) => {
-    if (!texts || texts.length === 0) {
-        return
-    }
+const saveHistory = (e, texts = []) => {
     if (texts.length > 20) {
         texts = texts.slice(texts.length - 20, texts.length)
     }
@@ -61,9 +58,22 @@ const getHistory = () => {
         return []
     }
 }
+const selectFile = () => {
+    const file = dialog.showOpenDialogSync({
+        title: "请选择背景图片(300*600)",
+        filters: [
+            {
+                name: "Images", extensions: ['jpg', 'png']
+            }
+        ],
+        properties: ['openFile']
+    })
+    return fs.readFileSync(file[0])
+}
 exports.initHandler = () => {
     ipcMain.handle(HandlerName.clipboardReadText, readText)
     ipcMain.handle(HandlerName.getHistory, getHistory)
+    ipcMain.handle(HandlerName.selectFile, selectFile)
     ipcMain.on(HandlerName.rightClick, rightClick)
     ipcMain.on(HandlerName.leftClick, leftClick)
     ipcMain.on(HandlerName.saveHistory, saveHistory)
